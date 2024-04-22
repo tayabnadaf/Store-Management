@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import '../Style/UserProfile.css'
 
 function UserProfile() {
   const [user, setUser] = useState({ name: '', email: '' });
@@ -18,7 +19,7 @@ function UserProfile() {
   };
 
   return (
-    <div>
+    <div className="user-profile-container">
       <h1>User Profile</h1>
       <form onSubmit={handleUpdateProfile}>
         <label>

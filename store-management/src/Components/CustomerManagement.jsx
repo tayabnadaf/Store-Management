@@ -1,30 +1,32 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { addCustomer, deleteCustomer } from './actions/customerActions';
+import "../Style/CustomerManagement.css"
 
-function CustomerManagement() {
-  const [customers, setCustomers] = useState([]);
-  const [name, setName] = useState("");
-  const [funds, setFunds] = useState("");
+function CustomerManagement({ customers, addCustomer, deleteCustomer }) {
+  const [name, setName] = useState('');
+  const [funds, setFunds] = useState('');
 
-  const handleAddCustomer = event => {
+  const handleAddCustomer = (event) => {
     event.preventDefault();
+
     const newCustomer = {
       name,
       funds: parseFloat(funds)
     };
 
-    setCustomers([...customers, newCustomer]);
+    addCustomer(newCustomer);
 
-    setName("");
-    setFunds("");
+    setName('');
+    setFunds('');
   };
 
-  const handleDeleteCustomer = index => {
-    const updatedCustomers = customers.filter((_, i) => i !== index);
-    setCustomers(updatedCustomers);
+  const handleDeleteCustomer = (index) => {
+    deleteCustomer(index);
   };
 
   return (
-    <div>
+    <div className="customer-management-container">
       <h1>Customer Management</h1>
       <form onSubmit={handleAddCustomer}>
         <label>
@@ -32,7 +34,7 @@ function CustomerManagement() {
           <input
             type="text"
             value={name}
-            onChange={e => setName(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
             required
           />
         </label>
@@ -41,7 +43,7 @@ function CustomerManagement() {
           <input
             type="number"
             value={funds}
-            onChange={e => setFunds(e.target.value)}
+            onChange={(e) => setFunds(e.target.value)}
             required
           />
         </label>
@@ -79,4 +81,13 @@ function CustomerManagement() {
   );
 }
 
-export default CustomerManagement;
+const mapStateToProps = (state) => ({
+  customers: state.customers.customers
+});
+
+const mapDispatchToProps = {
+  addCustomer,
+  deleteCustomer
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CustomerManagement);

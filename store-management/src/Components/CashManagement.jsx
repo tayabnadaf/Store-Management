@@ -1,24 +1,24 @@
-import React, { useState } from "react"; 
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import {addTransaction} from './actions/cashActions';
+import '../Style/CashManagement.css'
 
-function CashManagement({ addTransaction }) {
-
+function CashManagement({ transactionsData, addTransaction }) {
   const [transaction, setTransaction] = useState({
-    type: "",
-    product: "",
-    amount: "",
-    customerName: ""
+    type: '',
+    product: '',
+    amount: '',
+    customerName: ''
   });
 
   const handleTransaction = event => {
     event.preventDefault();
 
-    console.log('addTransaction:', addTransaction);
-
     const amount = parseFloat(transaction.amount);
 
     if (isNaN(amount)) {
-      alert("Please enter a valid amount.");
-      return;
+      alert('Please enter a valid amount.');
+      return; 
     }
 
     addTransaction({
@@ -26,19 +26,17 @@ function CashManagement({ addTransaction }) {
       type: transaction.type,
       amount: amount
     });
-    console.log(addTransaction);
-    
 
     setTransaction({
-      type: "",
-      product: "",
-      amount: "",
-      customerName: ""
+      type: '',
+      product: '',
+      amount: '',
+      customerName: ''
     });
   };
 
   return (
-    <div>
+    <div className="cash-management-container">
       <h1>Cash Management</h1>
       <form onSubmit={handleTransaction}>
         <label>
@@ -99,10 +97,42 @@ function CashManagement({ addTransaction }) {
         </label>
         <button type="submit">Add Transaction</button>
       </form>
+      <div className="transaction-summary">
+        <h2>Transaction Summary</h2>
+        {transactionsData.length > 0 ? (
+          <table className="transaction-table">
+            <thead>
+              <tr>
+                <th>Customer Name</th>
+                <th>Type</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              {transactionsData.map((transaction, index) => (
+                <tr key={index}>
+                  <td>{transaction.name}</td>
+                  <td>{transaction.type === "in" ? "Received" : "Sent"}</td>
+                  <td>${transaction.amount}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <p>No transactions yet.</p>
+        )}
+      </div>
     </div>
   );
 }
-export default CashManagement;
+
+const mapStateToProps = state => ({
+  transactionsData: state.transactions.transactionsData 
+});
 
 
+const mapDispatchToProps ={
+  addTransaction
+};
 
+export default connect(mapStateToProps, mapDispatchToProps)(CashManagement);

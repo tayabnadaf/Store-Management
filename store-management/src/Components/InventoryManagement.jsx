@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { addProduct } from './actions/inventoryActions';
+import '../Style/InventoryManagement.css'
 
-function InventoryManagement() {
-  const [products, setProducts] = useState([]);
+function InventoryManagement({ products, addProduct }) {
   const [productName, setProductName] = useState('');
   const [productPrice, setProductPrice] = useState('');
   const [productStock, setProductStock] = useState('');
@@ -11,11 +13,11 @@ function InventoryManagement() {
 
     const newProduct = {
       name: productName,
-      price: productPrice,
-      stock: productStock
+      price: parseFloat(productPrice),
+      stock: parseInt(productStock)
     };
 
-    setProducts([...products, newProduct]);
+    addProduct(newProduct);
 
     setProductName('');
     setProductPrice('');
@@ -23,11 +25,11 @@ function InventoryManagement() {
   };
 
   return (
-    <div>
+    <div className="inventory-management-container">
       <h1>Inventory Management</h1>
       <form onSubmit={handleInventoryUpdate}>
         <label>
-          Name:
+          Product:
           <input
             type="text"
             value={productName}
@@ -53,16 +55,16 @@ function InventoryManagement() {
             required
           />
         </label>
-        <button type="submit">Update Inventory</button>
+        <button type="submit" className='inventory_button'>Update Inventory</button>
       </form>
 
       {products.length > 0 && (
-        <div>
+        <div className="product-inventory-container">
           <h2>Product Inventory</h2>
           <table>
             <thead>
               <tr>
-                <th>Name</th>
+                <th>Product</th>
                 <th>Price</th>
                 <th>Stock</th>
               </tr>
@@ -83,4 +85,12 @@ function InventoryManagement() {
   );
 }
 
-export default InventoryManagement;
+const mapStateToProps = state => ({
+  products: state.inventory.products
+});
+
+const mapDispatchToProps = {
+  addProduct
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(InventoryManagement);

@@ -4,6 +4,7 @@ import '../Style/Menu.css'
 const Menu = () => {
   return (
     <nav className="menu">
+    <h2 className='nav__name'>Store Management</h2>
       <ul>
         <li>
           <Link to="/">Dashboard</Link>
@@ -16,9 +17,6 @@ const Menu = () => {
         </li>
         <li>
           <Link to="/inventoryManagement">Inventory Management</Link>
-        </li>
-        <li>
-          <Link to="/transactionDetails">Transaction Details</Link>
         </li>
         <li>
           <Link to="/userProfile">User Profile</Link>

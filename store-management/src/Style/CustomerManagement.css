@@ -1,0 +1,85 @@
+/* Container styles */
+.customer-management-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Heading styles */
+  .customer-management-container h1 {
+    font-size: 28px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Form styles */
+  .customer-management-container form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .customer-management-container form label {
+    margin-bottom: 10px;
+  }
+  
+  .customer-management-container form input,
+  .customer-management-container form select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .customer-management-container form button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .customer-management-container form button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Customer list styles */
+  .customer-management-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .customer-management-container table th,
+  .customer-management-container table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ccc;
+  }
+  
+  .customer-management-container table th {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .customer-management-container table td button {
+    padding: 8px 12px;
+    font-size: 14px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .customer-management-container table td button:hover {
+    background-color: #c82333;
+  }
+  

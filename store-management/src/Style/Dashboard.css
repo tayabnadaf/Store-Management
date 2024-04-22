@@ -1,0 +1,26 @@
+/* Dashboard container styles */
+.dashboard-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Dashboard heading styles */
+  .dashboard-container h1 {
+    font-size: 32px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* CashManagement component within Dashboard */
+  .dashboard-container .cash-management-container {
+    border: none; /* Remove border for CashManagement component */
+    box-shadow: none; /* Remove box shadow for CashManagement component */
+  }
+  

@@ -8,7 +8,9 @@
   padding-top: 20px;
   overflow-y: auto;
 }
-
+.nav__name{
+  color: rgb(8, 105, 190)
+}
 .menu ul {
   list-style-type: none;
   margin: 0;
@@ -32,6 +34,6 @@
 }
 
 .content {
-  margin-left: 220px; /* Adjust margin-left to match the width of the menu plus additional padding */
-  padding: 20px; /* Add padding to separate content from the menu */
+  margin-left: 220px; 
+  padding: 20px;
 }

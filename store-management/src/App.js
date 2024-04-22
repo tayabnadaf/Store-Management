@@ -5,13 +5,16 @@ import Dashboard from "./Components/Dashboard";
 import CashManagement from "./Components/CashManagement";
 import CustomerManagement from "./Components/CustomerManagement";
 import InventoryManagement from "./Components/InventoryManagement";
-import TransactionDetails from "./Components/TransactionDetails";
 import UserProfile from "./Components/UserProfile";
 import Menu from "./Components/Menu";
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import rootReducer from './Components/reducers';
 
+const store = createStore(rootReducer);
 function App() {
   return (
-    <>
+    <Provider store={store}>
     <Router>
       <div className="container">
         <Menu/>
@@ -22,12 +25,11 @@ function App() {
           <Route exact path="/cashmanagement" element={<CashManagement/>}/>
           <Route exact path="/customerManagement" element={<CustomerManagement/>}/>
           <Route exact path="/inventoryManagement" element={<InventoryManagement/>}/>
-          <Route exact path="/transactionDetails" element={<TransactionDetails/>}/>
           <Route exact path="/userProfile" element={<UserProfile/>}/>
         </Routes>
       </div>
     </Router>
-    </>
+    </Provider>
   );
 }
 
